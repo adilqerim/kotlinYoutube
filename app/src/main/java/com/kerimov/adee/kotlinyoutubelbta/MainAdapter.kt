@@ -1,9 +1,12 @@
 package com.kerimov.adee.kotlinyoutubelbta
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.video_row.view.*
 
@@ -38,5 +41,10 @@ class MainAdapter(val homeFeed: Models.HomeFeed) : RecyclerView.Adapter<CustomVi
 }
 
 class CustomViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-
+    init {
+        v.setOnClickListener{
+            val intent = Intent(v.context,CourseDetailActivity::class.java)
+            v.context.startActivity(intent)
+        }
+    }
 }
