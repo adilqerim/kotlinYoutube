@@ -36,14 +36,24 @@ class MainAdapter(val homeFeed: Models.HomeFeed) : RecyclerView.Adapter<CustomVi
         Picasso.get().load(video.channel.profileImageUrl).into(p0.itemView.imageView_photo)
 
 
+        p0.video = video
+
     }
 
 }
 
-class CustomViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+class CustomViewHolder(val v: View, var video: Models.Video? = null) : RecyclerView.ViewHolder(v) {
+
+    companion object {
+        val VIDEO_TITLE_KEY = "VIDEO_TITLE"
+        val VIDEO_ID_KEY = "VIDEO_ID"
+
+    }
     init {
         v.setOnClickListener{
             val intent = Intent(v.context,CourseDetailActivity::class.java)
+            intent.putExtra(VIDEO_TITLE_KEY,video?.name)
+            intent.putExtra(VIDEO_ID_KEY,video?.id)
             v.context.startActivity(intent)
         }
     }
